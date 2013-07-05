@@ -14,11 +14,9 @@ var view = new Backbone.View({
   hammerEvents: {
     'tap h1': 'handleTap'
   },
-
   hammerOptions: {
     tap: true
   },
-
   handleTap: function(){
     console.log('hammer time!');
   }
@@ -27,7 +25,7 @@ var view = new Backbone.View({
 view.$('h1').trigger('tap');
 // → "hammer time!"
 
-// Creates a hammer instance on the view's element
+// Access the view's hammer instance
 view.hammer();
 // → view.$el.hammer()
 ```
@@ -45,21 +43,23 @@ View constructors will accept two additional options that will be
 automatically attached to instances, `hammerOptions` and `hammerEvents`.
 See examples above for passing these directly to a constructor.
 
-**delegateHammerEvents** delegateEvents([events])
+**delegateHammerEvents** `delegateEvents([events])`
 
 Uses hammer's jQuery interface to attach delegated hammer events to the
 view's element. Accepts an optional events object that will be used in
 place of View.prototpe.events. Unbinds any previously bound hammer
 events prior to attaching new events.
 
-**undelegateHammerEvents** undelegateHammerEvents()
+**undelegateHammerEvents** `undelegateHammerEvents()`
 
 Removes any bound event handlers that were created with
 `delegateHammerEvents`.
 
-**hammer** hammer([options])
+**hammer** `hammer([options])`
 
 Returns the hammer instance for the view's element, directly exposing
 the hammer API if you need to create hammer events directly.
 
+## License
 
+MIT
