@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Backbone.hammer.js by wookiehangover</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Backbone.hammer.js</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/wookiehangover/backbone.hammer.js">View the Project on GitHub <small>wookiehangover/backbone.hammer.js</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/wookiehangover/backbone.hammer.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wookiehangover/backbone.hammer.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wookiehangover/backbone.hammer.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="backbonehammerjs" class="anchor" href="#backbonehammerjs"><span class="octicon octicon-link"></span></a>backbone.hammer.js</h1>
+
+<p>v0.0.3</p>
+
+<p>A <a href="http://eightmedia.github.io/hammer.js/">Hammerjs</a> adapater for
+<a href="http://backbonejs.org">Backbone</a>. Enables hammerjs event
+bindings for Backbone Views. For attaching touch events in the same
+style as Backbone delegateEvents. Works with or without AMD.</p>
+
+<h2>
+<a name="install-with-bower" class="anchor" href="#install-with-bower"><span class="octicon octicon-link"></span></a>Install with <a href="http://bower.io/">Bower</a>
+</h2>
+
+<pre><code>$ bower install -s backbone.hammer.js
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Depends on the <a href="https://github.com/EightMedia/hammer.js/blob/master/dist/jquery.hammer.js">hammerjs jquery plugin</a> (Backbone Views need jQuery after
+all).</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span>
+  <span class="nx">hammerEvents</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">'swipeleft h1'</span><span class="o">:</span> <span class="s1">'handleSwipe'</span><span class="p">,</span>
+    <span class="s1">'tap h1'</span><span class="o">:</span> <span class="s1">'handleTap'</span>
+  <span class="p">},</span>
+  <span class="nx">hammerOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">tap</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="nx">handleSwipe</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Stop.'</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">handleTap</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hammer time!'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">view</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">);</span>
+<span class="c1">// → "Stop."</span>
+<span class="nx">view</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">);</span>
+<span class="c1">// → "Hammer time!"</span>
+
+<span class="c1">// Access the view's hammer instance</span>
+<span class="nx">view</span><span class="p">.</span><span class="nx">hammer</span><span class="p">();</span>
+<span class="c1">// → view.$el.hammer()</span>
+</pre></div>
+
+<p>Works alongside <code>delegateEvents</code> and <code>undelegateEvents</code>, so normal event
+bindings will be uneffected by adding hammer events.</p>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<p>All additional methods are attached to Backbone.View.prototype.</p>
+
+<p><strong>Backbone.View.prototype.initialize/constructor</strong></p>
+
+<p>View constructors will accept two additional options that will be
+automatically attached to instances, <code>hammerOptions</code> and <code>hammerEvents</code>.
+See examples above for passing these directly to a constructor.</p>
+
+<p><strong>Backbone.View.prototype.delegateHammerEvents</strong> <code>delegateEvents([events])</code></p>
+
+<p>Uses hammer's jQuery interface to attach delegated hammer events to the
+view's element. Accepts an optional events object that will be used in
+place of View.prototpe.events. Unbinds any previously bound hammer
+events prior to attaching new events.</p>
+
+<p><strong>Backbone.View.prototype.undelegateHammerEvents</strong> <code>undelegateHammerEvents()</code></p>
+
+<p>Removes any bound event handlers that were created with
+<code>delegateHammerEvents</code>.</p>
+
+<p><strong>Backbone.View.prototype.hammer</strong> <code>hammer([options])</code></p>
+
+<p>Returns the hammer instance for the view's element, directly exposing
+the hammer API if you need to create hammer events directly.</p>
+
+<p><strong>Backbone.hammerOptions</strong></p>
+
+<p>An optionally declared options hash that will be default settings for
+any view that uses <code>hammerEvents</code>.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wookiehangover">wookiehangover</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
