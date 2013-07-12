@@ -2,37 +2,35 @@
   // Set up Backbone appropriately for the environment.
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['underscore', 'backbone'], function(_, Backbone) {
-      factory(root, Backbone, _);
+    define(['underscore', 'backbone', 'hammer'], function(_, Backbone) {
+      factory(root, _, Backbone);
     });
   } else {
     // Browser globals
-    factory(root, root.Backbone, root._);
+    factory(root, root._, root.Backbone);
   }
-}(this, function(root, Backbone, _) {
+}(this, function(root, _, Backbone) {
   var $ = Backbone.$;
 
   if( !$.fn.hammer ){
-    return;
+    throw new Error('Hammer jQuery plugin not loaded.');
   }
-
-  // override _configure to esure that `hammerEvents` and `hammerOptions` are
-  // mixed into the instance when passed to the constructor
-  var viewOptions = ['hammerEvents', 'hammerOptions'];
 
   var undelegateEvents = Backbone.View.prototype.undelegateEvents;
   var delegateEvents = Backbone.View.prototype.delegateEvents;
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
-  var extend = Backbone.View.extend
+  var extend = Backbone.View.extend;
   var parent = Backbone.View;
   var protoProps = Backbone.View.prototype;
+
+  var viewOptions = ['hammerEvents', 'hammerOptions'];
 
   Backbone.View = function(options){
     options = options || {};
     _.extend(this, _.pick(options, viewOptions));
     return parent.apply(this, arguments);
-  }
+  };
 
   _.extend(Backbone.View.prototype, protoProps, {
     undelegateEvents: function(){
