@@ -1,9 +1,18 @@
-(function(root){
-  var Backbone = root.Backbone;
-  var _ = root._;
+(function(root, factory) {
+  // Set up Backbone appropriately for the environment.
+  if (typeof define === 'function' && define.amd) {
+    // AMD
+    define(['underscore', 'backbone'], function(_, Backbone) {
+      factory(root, Backbone, _);
+    });
+  } else {
+    // Browser globals
+    factory(root, root.Backbone, root._);
+  }
+}(this, function(root, Backbone, _) {
   var $ = Backbone.$;
 
-  if( !Backbone || !$.fn.hammer ){
+  if( !$.fn.hammer ){
     return;
   }
 
@@ -71,4 +80,4 @@
 
   Backbone.View.extend = extend;
 
-})(window);
+}));
