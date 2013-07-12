@@ -52,7 +52,7 @@
     },
 
     delegateHammerEvents: function(events){
-      var options = this.hammerOptions || {};
+      var options = _.defaults(this.hammerOptions || {}, Backbone.hammerOptions);
       if (!(events || (events = _.result(this, 'hammerEvents')))) return this;
       this.undelegateHammerEvents();
       for(var key in events) {

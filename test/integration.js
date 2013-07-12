@@ -48,5 +48,22 @@ jQuery(function($){
     view.$el.trigger('click');
     ok( this.clickStub.called );
   });
+
+  test('global options', function(){
+    Backbone.hammerOptions = { tap_always: false };
+    var View = Backbone.View.extend(this.viewOptions);
+    var spy = sinon.spy(View.prototype, 'hammer');
+    var view = new View();
+    ok( spy.calledWith({ tap_always: false }) );
+    spy.reset();
+
+    view.hammerOptions = { tap_always: true };
+    view.undelegateHammerEvents();
+    view.delegateHammerEvents();
+    ok( spy.calledWith({ tap_always: true }) );
+
+    spy.restore();
+    Backbone.hammerOptions = {};
+  });
 });
 
