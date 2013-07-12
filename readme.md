@@ -10,7 +10,7 @@ style as Backbone delegateEvents. Works with or without AMD.
 ## Install with [Bower](http://bower.io/)
 
 ```
-$ bower install -s backbone.hammer.js
+$ bower install --save backbone.hammer.js
 ```
 
 ## Usage
