@@ -45,8 +45,9 @@ style as Backbone delegateEvents. Works with or without AMD.</p>
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>Depends on the <a href="https://github.com/EightMedia/hammer.js/blob/master/dist/jquery.hammer.js">hammerjs jquery plugin</a> (Backbone Views need jQuery after
-all).</p>
+<p>Depends on the <a href="https://github.com/EightMedia/hammer.js/blob/master/dist/jquery.hammer.js">Hammerjs jQuery
+plugin</a>,
+jQuery and, of course, Backbone and Underscore.</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span>
   <span class="nx">hammerEvents</span><span class="o">:</span> <span class="p">{</span>
@@ -82,33 +83,49 @@ bindings will be uneffected by adding hammer events.</p>
 
 <p>All additional methods are attached to Backbone.View.prototype.</p>
 
-<p><strong>Backbone.View.prototype.initialize/constructor</strong></p>
+<p><strong>Backbone.View.prototype.initialize/constructor</strong> <code>new Backbone.View([options])</code></p>
 
 <p>View constructors will accept two additional options that will be
 automatically attached to instances, <code>hammerOptions</code> and <code>hammerEvents</code>.
 See examples above for passing these directly to a constructor.</p>
 
-<p><strong>Backbone.View.prototype.delegateHammerEvents</strong> <code>delegateEvents([events])</code></p>
+<p><strong>Backbone.View.prototype.delegateHammerEvents</strong> <code>delegateHammerEvents([events])</code></p>
 
 <p>Uses hammer's jQuery interface to attach delegated hammer events to the
 view's element. Accepts an optional events object that will be used in
 place of View.prototpe.events. Unbinds any previously bound hammer
-events prior to attaching new events.</p>
+events prior to attaching new events. Called simultaneously with
+<code>delegateEvents</code>.</p>
 
 <p><strong>Backbone.View.prototype.undelegateHammerEvents</strong> <code>undelegateHammerEvents()</code></p>
 
 <p>Removes any bound event handlers that were created with
-<code>delegateHammerEvents</code>.</p>
+<code>delegateHammerEvents</code>. Automatically called by <code>undelegateEvents</code>, so
+hammer events are removed along with other events on the view.</p>
 
 <p><strong>Backbone.View.prototype.hammer</strong> <code>hammer([options])</code></p>
 
 <p>Returns the hammer instance for the view's element, directly exposing
-the hammer API if you need to create hammer events directly.</p>
+the hammer API if you need to create hammer events directly. In most
+cases, the default behavior of creating a hammer instance on the view's
+<code>el</code> will be sufficient. This method can be overridden if you'd like
+to declare touch events on another element, just make sure to return a
+call to the hammer jQuery plugin:</p>
+
+<div class="highlight"><pre><span class="nx">hammer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">'.touch-area'</span><span class="p">).</span><span class="nx">hammer</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 
 <p><strong>Backbone.hammerOptions</strong></p>
 
-<p>An optionally declared options hash that will be default settings for
-any view that uses <code>hammerEvents</code>.</p>
+<p>Default settings for any view that uses <code>hammerEvents</code>. See the <a href="https://github.com/EightMedia/hammer.js/wiki/Getting-Started#gesture-options">hammer
+docs</a> for more info.</p>
+
+<div class="highlight"><pre><span class="nx">Backbone</span><span class="p">.</span><span class="nx">hammerOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">prevent_default</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+</pre></div>
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
