@@ -33,13 +33,17 @@
   };
 
   _.extend(Backbone.View.prototype, protoProps, {
+    _hammered: false,
+
     undelegateEvents: function(){
       this.undelegateHammerEvents();
       return undelegateEvents.apply(this, arguments);
     },
 
     undelegateHammerEvents: function(){
-      this.hammer().off('.hammerEvents' + this.cid);
+      if (this._hammered) {
+        this.hammer().off('.hammerEvents' + this.cid);
+      }
       return this;
     },
 
@@ -72,6 +76,7 @@
     },
 
     hammer: function(options){
+      this._hammered = true;
       return this.$el.hammer(options);
     }
   });
