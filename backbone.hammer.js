@@ -16,23 +16,20 @@
     throw new Error('Hammer jQuery plugin not loaded.');
   }
 
-  var undelegateEvents = Backbone.View.prototype.undelegateEvents;
-  var delegateEvents = Backbone.View.prototype.delegateEvents;
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
-
-  var extend = Backbone.View.extend;
-  var parent = Backbone.View;
-  var protoProps = Backbone.View.prototype;
-
   var viewOptions = ['hammerEvents', 'hammerOptions'];
 
-  Backbone.View = function(options){
-    options = options || {};
-    _.extend(this, _.pick(options, viewOptions));
-    return parent.apply(this, arguments);
-  };
+  var View = Backbone.View;
+  var delegateEvents = View.prototype.delegateEvents;
+  var undelegateEvents = View.prototype.undelegateEvents;
 
-  _.extend(Backbone.View.prototype, protoProps, {
+  Backbone.View = View.extend({
+    constructor: function(options){
+      options = options || {};
+      _.extend(this, _.pick(options, viewOptions));
+      return View.apply(this, arguments);
+    },
+
     _hammered: false,
 
     undelegateEvents: function(){
@@ -80,7 +77,4 @@
       return this.$el.hammer(options);
     }
   });
-
-  Backbone.View.extend = extend;
-
 }));
