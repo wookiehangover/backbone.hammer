@@ -28,7 +28,7 @@
         </ul>
       </header>
       <section>
-        <p>v0.0.3</p>
+        <p>v0.1.0</p>
 
 <p>A <a href="http://eightmedia.github.io/hammer.js/">Hammerjs</a> adapater for
 <a href="http://backbonejs.org">Backbone</a>. Enables hammerjs event
@@ -49,7 +49,7 @@ style as Backbone delegateEvents. Works with or without AMD.</p>
 plugin</a>,
 jQuery and, of course, Backbone &amp; Underscore.</p>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">({</span>
   <span class="nx">hammerEvents</span><span class="o">:</span> <span class="p">{</span>
     <span class="s1">'swipeleft h1'</span><span class="o">:</span> <span class="s1">'handleSwipe'</span><span class="p">,</span>
     <span class="s1">'tap h1'</span><span class="o">:</span> <span class="s1">'handleTap'</span>
@@ -113,7 +113,7 @@ view's <code>el</code> will be sufficient. This method can be overridden if you'
 like to declare touch events on another element, just make sure to
 return a call to the hammer jQuery plugin:</p>
 
-<div class="highlight"><pre><span class="nx">hammer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">hammer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">){</span>
   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">'.touch-area'</span><span class="p">).</span><span class="nx">hammer</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -123,7 +123,7 @@ return a call to the hammer jQuery plugin:</p>
 <p>Default settings for any view that uses <code>hammerEvents</code>. See the <a href="https://github.com/EightMedia/hammer.js/wiki/Getting-Started#gesture-options">hammer
 docs</a> for more info.</p>
 
-<div class="highlight"><pre><span class="nx">Backbone</span><span class="p">.</span><span class="nx">hammerOptions</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">Backbone</span><span class="p">.</span><span class="nx">hammerOptions</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">prevent_default</span><span class="o">:</span> <span class="kc">true</span>
 <span class="p">};</span>
 </pre></div>
