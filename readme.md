@@ -1,6 +1,6 @@
 # backbone.hammer.js
 
-v0.0.3
+v0.1.0
 
 A [Hammerjs](http://eightmedia.github.io/hammer.js/) adapater for
 [Backbone](http://backbonejs.org). Enables hammerjs event
