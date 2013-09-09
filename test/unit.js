@@ -50,6 +50,35 @@ jQuery(function($){
     hammerStub.restore();
   });
 
+  test('#undelegateHammerEvents doest create hammer unless it is needed', 1, function() {
+    var view = new Backbone.View();
+    var hammerSpy = sinon.spy(view, 'hammer');
+
+    view.undelegateHammerEvents();
+    equal(hammerSpy.callCount, 0);
+    hammerSpy.restore();
+  });
+
+  test('#undelegateHammerEvents calls off when hammered', 2, function() {
+    var View = Backbone.View.extend({
+      hammerEvents: {
+        'tap': $.noop
+      }
+    });
+    var offStub = sinon.stub();
+    var hammerStub = sinon.stub(View.prototype, 'hammer');
+    hammerStub.returns({
+      on: $.noop,
+      off: offStub
+    });
+
+    var view = new View();
+    view._hammered = true;
+    view.undelegateHammerEvents();
+    ok(hammerStub.called, "hammerStub Called");
+    ok(offStub.calledWith('.hammerEvents' + view.cid), "offStub Called With");
+  });
+
   test('hammerEvents are mixed in from the constructor', function(){
     var view = new Backbone.View({
       hammerEvents: {
