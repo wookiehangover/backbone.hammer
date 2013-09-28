@@ -1,7 +1,7 @@
 {
-  "name": "backbone.hammer.js",
+  "name": "backbone.hammer",
   "version": "0.1.0",
-  "main": "backbone.hammer.js",
+  "main": "backbone.hammer",
   "ignore": [
     "**/.*",
     "node_modules",

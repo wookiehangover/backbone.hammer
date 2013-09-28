@@ -1,4 +1,4 @@
-# backbone.hammer.js
+# backbone.hammer
 
 v0.1.0
 
