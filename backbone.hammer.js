@@ -2,7 +2,7 @@
   // Set up Backbone appropriately for the environment.
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['underscore', 'backbone', 'hammer'], function(_, Backbone) {
+    define(['underscore', 'backbone', 'hammerjs'], function(_, Backbone) {
       factory(root, _, Backbone);
     });
   } else {
