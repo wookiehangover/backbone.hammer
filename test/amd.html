@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>backbone.hammer.js</title>
+  <link rel="stylesheet" href="vendor/qunit-1.12.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+    <div id="testElement">
+      <h1>Test</h1>
+    </div>
+  </div>
+  <script src="vendor/qunit-1.12.0.js"></script>
+  <script src="vendor/sinon-1.7.3.js"></script>
+  <script src="http://requirejs.org/docs/release/2.1.11/minified/require.js"></script>
+
+  <script>
+    requirejs.config({
+      paths: {
+        jquery: 'http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min',
+        underscore: 'http://underscorejs.org/underscore-min',
+        backbone: 'http://backbonejs.org/backbone-min',
+
+        hammerjs: 'https://rawgithub.com/EightMedia/hammer.js/master/hammer',
+        'jquery.hammer': 'https://rawgithub.com/EightMedia/jquery.hammer.js/master/jquery.hammer',
+
+        'view-tests-latest': 'http://jashkenas.github.io/backbone/test/view',
+        'view-tests-master': 'https://rawgithub.com/jashkenas/backbone/master/test/view'
+      }
+    })
+
+    require(['jquery.hammer'], function(){
+      require(['./unit'], function(){
+        // Always run the Backbone View tests last
+        require(['view-tests-latest'], function(){});
+      });
+    })
+  </script>
+
+</html>
+
