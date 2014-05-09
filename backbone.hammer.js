@@ -53,7 +53,6 @@
     delegateHammerEvents: function(events){
       var options = _.defaults(_.result(this, 'hammerOptions') || {}, Backbone.hammerOptions);
       if (!(events || (events = _.result(this, 'hammerEvents')))) return this;
-      this.undelegateHammerEvents();
       for(var key in events) {
         var method = events[key];
         if (!_.isFunction(method)) method = this[events[key]];
