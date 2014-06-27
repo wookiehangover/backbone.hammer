@@ -1,15 +1,23 @@
 (function(root, factory) {
-  // Set up Backbone appropriately for the environment.
+  // Set up Backbone appropriately for the environment. Start with AMD
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['underscore', 'backbone', 'hammerjs'], function(_, Backbone) {
+    define(['underscore', 'backbone', 'jquery.hammerjs'], function(_, Backbone) {
       factory(root, _, Backbone);
     });
+
+  // Next for Node.js of CommonJS. jQuery may not be needed as a module.
+  } else if (typeof exports !== 'undefined') {
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    factory(root, _, Backbone);
+
+  // Finally, as a browser global  
   } else {
-    // Browser globals
     factory(root, root._, root.Backbone);
   }
 }(this, function(root, _, Backbone) {
+
   var $ = Backbone.$;
 
   if( !$.fn.hammer ){
