@@ -1,0 +1,35 @@
+{
+  "name": "backbone.hammer",
+  "version": "1.0.0",
+  "description": "Declarative HammerJS touch events for Backbone Views",
+  "main": "backbone.hammer.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wookiehangover/backbone.hammer.git"
+  },
+  "author": "Sam Breed <sam@quickleft.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wookiehangover/backbone.hammer/issues"
+  },
+  "homepage": "https://github.com/wookiehangover/backbone.hammer",
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "jquery-hammerjs": "^1.1.3",
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-qunit": "^0.3.3",
+    "jquery": "^2.1.1",
+    "qunitjs": "^1.15.0",
+    "requirejs": "^2.1.14",
+    "sinon": "^1.10.3"
+  }
+}
