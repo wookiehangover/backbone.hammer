@@ -1,16 +1,24 @@
 # backbone.hammer
 
-v0.2.0
+v1.0.0
 
 A [Hammerjs](http://eightmedia.github.io/hammer.js/) adapater for
 [Backbone](http://backbonejs.org). Enables hammerjs event
 bindings for Backbone Views. For attaching touch events in the same
 style as Backbone delegateEvents. Works with or without AMD.
 
+[![wercker status](https://app.wercker.com/status/1f28ca6ffe6c9020aafe5718ed5b719b/m "wercker status")](https://app.wercker.com/project/bykey/1f28ca6ffe6c9020aafe5718ed5b719b)
+
+## Install with [npm](http://npmjs.org/)
+
+```
+$ npm install --save backbone.hammer
+```
+
 ## Install with [Bower](http://bower.io/)
 
 ```
-$ bower install --save backbone.hammer.js
+$ bower install --save backbone.hammer
 ```
 
 ## Usage
