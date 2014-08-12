@@ -1,6 +1,6 @@
 {
   "name": "backbone.hammer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Declarative HammerJS touch events for Backbone Views",
   "main": "backbone.hammer.js",
   "directories": {
