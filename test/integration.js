@@ -50,17 +50,17 @@ jQuery(function($){
   });
 
   test('global options', function(){
-    Backbone.hammerOptions = { tap_always: false };
+    Backbone.hammerOptions = { tapAlways: false };
     var View = Backbone.View.extend(this.viewOptions);
     var spy = sinon.spy(View.prototype, 'hammer');
     var view = new View();
-    ok( spy.calledWith({ tap_always: false }) );
-    spy.reset();
+    ok( spy.calledWith({ tapAlways: false }) );
 
-    view.hammerOptions = { tap_always: true };
+    view.hammerOptions = { tapAlways: true };
     view.undelegateHammerEvents();
+    spy.reset();
     view.delegateHammerEvents();
-    ok( spy.calledWith({ tap_always: true }) );
+    ok( spy.calledWith({ tapAlways: true }) );
 
     spy.restore();
     Backbone.hammerOptions = {};
