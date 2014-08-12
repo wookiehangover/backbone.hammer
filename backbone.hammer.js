@@ -2,14 +2,19 @@
   // Set up Backbone appropriately for the environment.
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['underscore', 'backbone', 'hammerjs'], function(_, Backbone) {
-      factory(root, _, Backbone);
+    define(['underscore', 'backbone', 'jquery-hammerjs'], function(_, Backbone) {
+      factory(_, Backbone);
     });
+  } else if (typeof exports !== 'undefined') {
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    require('jquery-hammerjs');
+    factory(_, Backbone);
   } else {
     // Browser globals
-    factory(root, root._, root.Backbone);
+    factory(root._, root.Backbone);
   }
-}(this, function(root, _, Backbone) {
+}(this, function(_, Backbone) {
   var $ = Backbone.$;
 
   if( !$.fn.hammer ){
