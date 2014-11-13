@@ -67,18 +67,15 @@
         var eventName = match[1], selector = match[2];
         eventName += '.hammerEvents' + this.cid;
         method = _.bind(method, this);
-        if (selector === '') {
-          this.hammer(options).on(eventName, method);
-        } else {
-          this.hammer(options).on(eventName, selector, method);
-        }
+        this.hammer(options, selector).on(eventName, method);
       }
       return this;
     },
 
     hammer: function(options){
       this._hammered = true;
-      return this.$el.hammer(options);
+      var $element = selector ? this.$(selector) : this.$el;
+      return $element.hammer(options);
     }
   });
 }));
