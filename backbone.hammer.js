@@ -72,7 +72,7 @@
       return this;
     },
 
-    hammer: function(options){
+    hammer: function(options, selector){
       this._hammered = true;
       var $element = selector ? this.$(selector) : this.$el;
       return $element.hammer(options);
