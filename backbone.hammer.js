@@ -64,21 +64,22 @@
         if (!method) continue;
 
         var match = key.match(delegateEventSplitter);
-        var eventName = match[1], selector = match[2];
+        var eventName = match[1], selector = match[2] || null;
         eventName += '.hammerEvents' + this.cid;
         method = _.bind(method, this);
-        if (selector === '') {
-          this.hammer(options).on(eventName, method);
-        } else {
-          this.hammer(options).on(eventName, selector, method);
-        }
+        this.hammer(options, selector).on(eventName, selector, method);
       }
       return this;
     },
 
-    hammer: function(options){
+    hammer: function(options, selector){
       this._hammered = true;
-      return this.$el.hammer(options);
+      if (selector) {
+        this.$(selector).hammer(options);
+      } else {
+        this.$el.hammer(options);
+      }
+      return this.$el;
     }
   });
 }));
