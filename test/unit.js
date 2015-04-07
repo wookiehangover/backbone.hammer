@@ -2,14 +2,14 @@
   // Set up Backbone appropriately for the environment.
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['underscore', 'backbone', '../backbone.hammer'], function(_, Backbone) {
-      factory(root, _, Backbone);
+    define(['sinon', 'underscore', 'backbone', '../backbone.hammer'], function(sinon, _, Backbone) {
+      factory(root, _, Backbone, sinon);
     });
   } else {
     // Browser globals
-    factory(root, root._, root.Backbone);
+    factory(root, root._, root.Backbone, root.sinon);
   }
-}(this, function(root, _, Backbone) {
+}(this, function(root, _, Backbone, sinon) {
 
   root.jQuery(function($){
     module('backbone.hammer.js');
