@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>backbone.hammer.js</title>
-  <link rel="stylesheet" href="vendor/qunit-1.12.0.css">
+  <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
 </head>
 <body>
   <div id="qunit"></div>
@@ -16,12 +16,12 @@
   <script>
     QUnit.config.autostart = false;
   </script>
-  <script src="../node_modules/sinon/pkg/sinon-1.10.3.js"></script>
   <script src="../node_modules/requirejs/require.js"></script>
 
   <script>
     requirejs.config({
       paths: {
+        sinon: '../node_modules/sinon/lib/sinon',
         jquery: '../node_modules/jquery/dist/jquery.min',
         underscore: '../node_modules/underscore/underscore-min',
         backbone: '../node_modules/backbone/backbone-min',
