@@ -2,13 +2,13 @@
   // Set up Backbone appropriately for the environment.
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['underscore', 'backbone', 'jquery-hammerjs'], function(_, Backbone) {
+    define(['underscore', 'backbone', 'jquery.hammer'], function(_, Backbone) {
       factory(_, Backbone);
     });
   } else if (typeof exports !== 'undefined') {
     var _ = require('underscore');
     var Backbone = require('backbone');
-    require('jquery-hammerjs');
+    require('jquery.hammer');
     factory(_, Backbone);
   } else {
     // Browser globals
@@ -68,9 +68,9 @@
         eventName += '.hammerEvents' + this.cid;
         method = _.bind(method, this);
         if (selector === '') {
-          this.hammer(options).on(eventName, method);
+          this.hammer(options).bind(eventName, method);
         } else {
-          this.hammer(options).on(eventName, selector, method);
+          this.hammer(options).bind(eventName, selector, method);
         }
       }
       return this;
