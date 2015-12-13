@@ -68,9 +68,9 @@
         eventName += '.hammerEvents' + this.cid;
         method = _.bind(method, this);
         if (selector === '') {
-          this.hammer(options).on(eventName, method);
+          this.hammer(options).bind(eventName, method);
         } else {
-          this.hammer(options).on(eventName, selector, method);
+          this.hammer(options).bind(eventName, selector, method);
         }
       }
       return this;
